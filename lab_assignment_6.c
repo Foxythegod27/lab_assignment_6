@@ -1,8 +1,21 @@
+/* Luna(paxton)DeWitt 02.23.2024 */
 #include <stdio.h>
-
+#include <stdlib.h>
 int search(int numbers[], int low, int high, int value) 
 {
+	if (low > high){
 	return -1;
+	}
+
+	int mid = low + (high - low)/2;
+	if (numbers[mid] == value){
+		return mid;
+	}else if (numbers[mid] < value){
+		return search(numbers,mid+1,high,value);
+	}else{
+		return search(numbers,low,mid-1,value);
+	}
+	
 }
 
 void printArray(int numbers[], int sz)
@@ -27,7 +40,7 @@ int main(void)
 	int countOfNums;
 	FILE* inFile = fopen("input.txt","r");
 
-	fscanf(inFile, " %d\n", &numInputs);
+	fscanf(inFile, " %d\n", &numInputs);//If you see this I have 0 idea why this function doesnt work
 	
 	while (numInputs-- > 0)
 	{
